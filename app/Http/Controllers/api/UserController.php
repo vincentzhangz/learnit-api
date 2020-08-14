@@ -12,34 +12,24 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    private  $allEntity = [
-    'user_id',
-    'user_name',
-    'user_email',
-    'user_gender',
-    'user_image',
-    'user_role',
-    'created_at'
-    ];
-
     public function getUser(){
-        return DB::table('user')->get($this->allEntity);
+        return User::all();
     }
 
     public  function getUserByEmail(Request $request){
         $email = $request->email;
-        return DB::table('user')->get($this->allEntity)->where('user_email',$email);
+        return User::where('user_email', '=', $email)->first();
     }
 
     public function login(Request $request){
-        $result = DB::table('user')->where('user_email',$request->email)->first();
+        $result = User::where('user_email', '=', $request->email)->first();;
         if($result !== null){
             if(password_verify($request->password,$result->user_password)){
-                unset($result->user_password);
-                return json_encode($result);
-            }
+                return $result;
+            }else
+                return 'wrong cridential';
         }else
-            return 'wrong';
+            return 'wrong cridential';
     }
 
     public function register(Request $request){

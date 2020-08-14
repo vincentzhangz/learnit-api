@@ -21,6 +21,7 @@ class CreateUserTable extends Migration
             $table->string('user_image')->nullable();
             $table->string('user_role');
             $table->string('user_password');
+            $table->string('api_token');
             $table->timestamps();
         });
     }
