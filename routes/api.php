@@ -64,6 +64,7 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'enroll'], function(){
         Route::get('/{user_id}','api\CourseEnrollController@getCourse');
+        Route::get('/progress/{user_id}','api\CourseEnrollController@getProgress');
         });
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'assignment'], function(){

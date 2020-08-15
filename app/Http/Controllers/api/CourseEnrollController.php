@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Assignment;
 use App\Course;
 use App\CourseEnroll;
 use App\Http\Controllers\Controller;
@@ -22,6 +23,23 @@ class CourseEnrollController extends Controller
             array_push($listCourse,$single);
         }
         $user->listCourse = $listCourse;
+        return $user;
+    }
+
+    public function getProgress(Request $request){
+        $user = User::where('user_id',$request->user_id)->first();
+        if(!$user)
+            return json_encode(array('error'=>'Wrong user Id'));
+        
+        $enroll = CourseEnroll::where('user_id',$request->user_id)->get();
+        $listAssignment = array();
+        $listAnswer = array();
+        foreach($enroll as $singleEnroll){
+            $single_assignment = Assignment::where('course_id',$singleEnroll->course_id)->get();
+            array_push($listAssignment,$single_assignment);
+        }
+        $user->listAssignment = $listAssignment;
+        $user->listAnswer = $listAnswer;
         return $user;
     }
 }

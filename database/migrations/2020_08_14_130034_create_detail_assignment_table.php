@@ -17,10 +17,10 @@ class CreateDetailAssignmentTable extends Migration
             $table->string('assignment_id');
             $table->string('user_id');
             $table->string('assignment_upload_file');
-            $table->integer('assignment_score');
+            $table->integer('assignment_score')->nullable();
             $table->foreign('user_id')->references('user_id')->on('user');
             $table->foreign('assignment_id')->references('assignment_id')->on('assignment');
-            $table->primary(['user_id','assignment_id']);
+            // $table->primary(['user_id','assignment_id']);
             $table->timestamps();
         });
     }
