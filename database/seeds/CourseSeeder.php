@@ -25,7 +25,7 @@ class CourseSeeder extends Seeder
             $course->course_title = $faker->randomElement(['Ipa','Ips',"Matematika","Penjasorkes","TIK"]);
             $course->max_enroll_student = rand(10,20);
             $course->max_learning_day = rand(30,40);
-            $course->information = "Testing";
+            $course->information = "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem ullam quod omnis non voluptates officiis quia commodi fugit quibusdam! Cum explicabo eius velit cupiditate, corrupti atque accusamus possimus iure maxime! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem ullam quod omnis non voluptates officiis quia commodi fugit quibusdam! Cum explicabo eius velit cupiditate, corrupti atque accusamus possimus iure maxime!";
             $course->course_image = "https://i.stack.imgur.com/SFysv.jpg";
             $course->rating = rand(1,5);
             $course->created_at = $time->format('Y-m-d H:i:s');

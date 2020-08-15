@@ -23,6 +23,9 @@ Route::post('/login','api\UserController@login');
 Route::post('/register','api\UserController@register');
 Route::get('course/top/{offset}','api\CourseController@getCoursePopular');
 Route::get('course/category', 'api\CategoryController@getCategories');
+Route::get('/','api\ForumController@getAllForum');
+Route::get('/','api\ThreadController@getAllThread');
+Route::get('/','api\CommentController@getAllComment');
 });
 
 Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], function(){
@@ -41,20 +44,17 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
         Route::post('/','api\ForumController@register');
-        Route::get('/','api\ForumController@getAllForum');
         Route::get('/{forum_id}','api\ForumController@getForumById');
         Route::get('/course/{course_id}','api\ForumController@getForumByCourse');
         });
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'thread'], function(){
         Route::post('/','api\ThreadController@register');
-        Route::get('/','api\ThreadController@getAllThread');
         Route::get('/{thread_id}','api\ThreadController@getAllThreadById');
         });
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'comment'], function(){
         Route::post('/','api\CommentController@register');
-        Route::get('/','api\CommentController@getAllComment');
         Route::get('/{thread_id}','api\CommentController@getAllCommentByThreadId');
         });
 });    
