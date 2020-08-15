@@ -17,18 +17,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//untuk dari user ke api 
-
-
-
-//untuk dari front end ke server
 
 Route::group(['middleware'=>['cors','myauth'],'prefix' => 'v1'], function(){
 Route::post('/login','api\UserController@login');
 Route::post('/register','api\UserController@register');
 Route::get('course/top/{offset}','api\CourseController@getCoursePopular');
-Route::get('course/top/category', 'api\CategoryController@getCategories');
-
+Route::get('course/category', 'api\CategoryController@getCategories');
 });
 
 Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], function(){
