@@ -19,13 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware'=>['cors','myauth'],'prefix' => 'v1'], function(){
-Route::post('/login','api\UserController@login');
-Route::post('/register','api\UserController@register');
-Route::get('course/top/{offset}','api\CourseController@getCoursePopular');
-Route::get('course/category', 'api\CategoryController@getCategories');
-Route::get('/','api\ForumController@getAllForum');
-Route::get('/','api\ThreadController@getAllThread');
-Route::get('/','api\CommentController@getAllComment');
+    Route::post('/login','api\UserController@login');
+    Route::post('/register','api\UserController@register');
+    Route::get('course/top/{offset}','api\CourseController@getCoursePopular');
+    Route::get('course/category', 'api\CategoryController@getCategories');
+    Route::get('/forum','api\ForumController@getAllForum');
+    Route::get('/category','api\ThreadController@getAllThread');
+    Route::get('/comment','api\CommentController@getAllComment');
 });
 
 Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], function(){
@@ -57,4 +57,6 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::post('/','api\CommentController@register');
         Route::get('/{thread_id}','api\CommentController@getAllCommentByThreadId');
         });
+
+    
 });    
