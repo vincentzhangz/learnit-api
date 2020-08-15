@@ -61,19 +61,22 @@ class UserController extends Controller
         if($validate->fails()){
             return json_encode(array("error"=>"Invalid validation"));
         }
-
-        if(DB::table('user')->insert([
-            'user_id'=>uniqid(),
-            'user_name'=>$username,
-            'user_email'=>$email,
-            'user_gender'=>$gender,
-            'user_image'=>null,
-            'user_role'=>$role,
-            'user_password'=>password_hash($password,PASSWORD_BCRYPT),
-            'created_at'=>Helpers::getCurrentDate(),
-            'api_token'=>Str::random(60)
-        ]))
-        return json_encode('success');
-        return json_encode(array("error"=>"error insert user"));
+        
+        try {
+            if(DB::table('user')->insert([
+                'user_id'=>uniqid(),
+                'user_name'=>$username,
+                'user_email'=>$email,
+                'user_gender'=>$gender,
+                'user_image'=>null,
+                'user_role'=>$role,
+                'user_password'=>password_hash($password,PASSWORD_BCRYPT),
+                'created_at'=>Helpers::getCurrentDate(),
+                'api_token'=>Str::random(60)
+            ]))
+            return json_encode('success');
+        } catch (\Throwable $th) {
+            return json_encode(array("error"=>"error insert user"));
+        }
     }
 }
