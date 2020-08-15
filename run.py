@@ -4,6 +4,7 @@ import os
 from time import sleep
 
 def install():
+	os.system('composer install')
 	os.system('composer global require laravel/installer')
     subprocess.check_call([sys.executable, "-m", "pip", "install", "mysql-connector-python"])
 
@@ -38,7 +39,6 @@ def restorlaravel():
     sleep(1)
     print("restoring laravel :3")
     os.system("copy .env.example .env")
-    os.system("php artisan key:generate")
     os.system("php artisan key:generate")
     os.system("php artisan migrate:fresh --seed")
     print("success *(OwO)*")
