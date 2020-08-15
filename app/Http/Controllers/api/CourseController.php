@@ -63,7 +63,6 @@ class CourseController extends Controller
         $course->information = $information;
         $course->course_image = $image;
         $course->rating = $rating;
-        // return $course;
         if($course->save())
             return json_encode(array('course_id'=>$course_id));
         else
@@ -110,7 +109,6 @@ class CourseController extends Controller
         $id = $request->material_id;
         $title = $request->course_title;
         $content = $request->course_content;
-
         if(!$id || !$title || !$content)
             return json_encode(array('error'=>"invalid form data"));
         $material = CourseDetail::where('material_id',$id)->first();
