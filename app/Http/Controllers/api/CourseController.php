@@ -17,7 +17,8 @@ class CourseController extends Controller
         $title = $request->course_title;
         $maxEnroll = $request->max_enroll_student;
         $maxLearning = $request->max_learning_day;
-        if(!$teacher || !$category || !$title || !$maxEnroll || !$maxLearning)
+        $information = $request->information;
+        if(!$teacher || !$category || !$title || !$maxEnroll || !$maxLearning || !$information)
             return json_encode(array("error"=>"Error invalid data"));
         else if(User::where(['user_id', '=', $teacher])->first()->user_role == 'student')
             return json_encode(array("error"=>"Invalid Role"));
@@ -28,6 +29,7 @@ class CourseController extends Controller
         $course->user_id = $teacher;
         $course->max_enroll_student = $maxEnroll;
         $course->max_learning_dat = $maxLearning;
+        $course->information = $information;
         if($course->save())
             return json_encode("success");
         else
