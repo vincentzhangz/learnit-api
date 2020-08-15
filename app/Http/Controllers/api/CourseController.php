@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
+
+    public function getCourseByCategory(Request $request){
+        return Course::where('category_id',$request->category_id)->get();
+    }
+
     public function register(Request $request){
         $teacher = $request->user_id;
         $category = $request->category_id;
@@ -18,9 +23,11 @@ class CourseController extends Controller
         $maxEnroll = $request->max_enroll_student;
         $maxLearning = $request->max_learning_day;
         $information = $request->information;
-        if(!$teacher || !$category || !$title || !$maxEnroll || !$maxLearning || !$information)
+        $rating = $request->rating;
+        $image = $request->course_image;
+        if(!$rating||!$image||!$teacher || !$category || !$title || !$maxEnroll || !$maxLearning || !$information)
             return json_encode(array("error"=>"Error invalid data"));
-        else if(User::where(['user_id', '=', $teacher])->first()->user_role == 'student')
+        else if(User::where('user_id', $teacher)->first()->user_role == 'student')
             return json_encode(array("error"=>"Invalid Role"));
         $course = new Course;
         $course->course_id = uniqid();
@@ -28,8 +35,11 @@ class CourseController extends Controller
         $course->course_title = $title;
         $course->user_id = $teacher;
         $course->max_enroll_student = $maxEnroll;
-        $course->max_learning_dat = $maxLearning;
+        $course->max_learning_day = $maxLearning;
         $course->information = $information;
+        $course->course_image = $image;
+        $course->rating = $rating;
+        // return $course;
         if($course->save())
             return json_encode(array('course_id'=>$course->course_id));
         else

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 class ThreadController extends Controller
 {
 
+
+    public function getThreadByForumId(Request $request){
+        return Thread::where('forum_id',$request->forum_id)->first();
+    }
+
     public function register(Request $request){
         $thread = new Thread;
         $thread->thread_id = uniqid();
