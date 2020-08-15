@@ -19,7 +19,7 @@ class CreateCommentTable extends Migration
             $table->text('reply_content');
             $table->foreign('thread_id')->references('thread_id')->on('thread');
             $table->foreign('user_id')->references('user_id')->on('user');
-            $table->primary(['thread_id','user_id']);
+            // $table->primary(['thread_id','user_id']);
             $table->timestamps();
         });
     }
