@@ -99,12 +99,35 @@ class CourseController extends Controller
     }
 
     public function getCourseDetailbyId(Request $request){
-        $result = CourseDetail::where('material_id','=',$request->material_id)->first();
-        $result->content = $result->course_content;
-        return $result;
+        return CourseDetail::where('course_id',$request->course_id)->first();
     }
 
     public function getCourseById(Request $request){
         return Course::where('course_id','=',$request->course_id)->first();
+    }
+
+    public function updateMaterial(Request $request){
+        $id = $request->material_id;
+        $title = $request->course_title;
+        $content = $request->course_content;
+
+        if(!$id || !$title || !$content)
+            return json_encode(array('error'=>"invalid form data"));
+        $material = CourseDetail::where('material_id',$id)->first();
+        if(!$material)
+            return json_encode(array('error'=>"invalid id"));
+        $material->course_title = $title;
+        $material->course_content = $content;
+        if($material->save())
+            return json_encode("success");
+        else
+            return json_encode(array('error'=>'failed to update'));
+    }
+
+    public function deleteMaterial(Request $request){
+        if(CourseDetail::where('material_id',$request->material_id)->first()->forceDelete())
+            return json_encode('success');
+        else
+            return json_encode(array('error'=>'id not exits'));
     }
 }

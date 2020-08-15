@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Assignment;
+use App\AssignmentDetail;
 use App\Course;
 use App\CourseEnroll;
 use App\Http\Controllers\Controller;
@@ -48,8 +49,10 @@ class CourseEnrollController extends Controller
         $listAssignment = array();
         $listAnswer = array();
         foreach($enroll as $singleEnroll){
-            $single_assignment = Assignment::where('course_id',$singleEnroll->course_id)->get();
-            array_push($listAssignment,$single_assignment);
+            $assignment = Assignment::where('course_id',$singleEnroll->course_id)->get();
+            $answer = AssignmentDetail::where('user_id',$singleEnroll->user_id)->get(['assignment_score','assignment_id']);
+            array_push($listAssignment,$assignment);
+            array_push($listAnswer,$answer);
         }
         $user->listAssignment = $listAssignment;
         $user->listAnswer = $listAnswer;

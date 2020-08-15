@@ -42,9 +42,11 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'course'], function(){
         Route::post('/','api\CourseController@register');
         Route::post('/material','api\CourseController@registerMaterial');
-        Route::get('/detail/{material_id}','api\CourseController@getCourseDetailbyId');
+        Route::get('/detail/{course_id}','api\CourseController@getCourseDetailbyId');
         Route::get('/detail','api\CourseController@getCourseDetail');
         Route::post('/update','api\CourseController@updateCourse');
+        Route::post('/material/update','api\CourseController@updateMaterial');
+        Route::get('/material/delete/{material_id}','api\CourseController@deleteMaterial');
     });
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
@@ -73,6 +75,7 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/{assignment_id}','api\AssignmentController@getAssingmentById');
         Route::post('/','api\AssignmentController@register');
         });
+
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'answer'], function(){
         Route::get('/','api\AssignmentDetailController@getAnswer');
         Route::get('/{assignment_id}','api\AssignmentDetailController@getAnswerByAssignmentId');
