@@ -40,6 +40,7 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/{course_id}','api\CourseController@getCourseById');
         Route::get('/detail/{material_id}','api\CourseController@getCourseDetailbyId');
         Route::get('/detail','api\CourseController@getCourseDetail');
+        Route::get('/category', 'api\CategoryController@getCategories');
 
 
         Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
