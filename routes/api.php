@@ -72,4 +72,11 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/{assignment_id}','api\AssignmentController@getAssingmentById');
         Route::post('/','api\AssignmentController@register');
         });
+    Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'answer'], function(){
+        Route::get('/','api\AssignmentDetailController@getAnswer');
+        Route::get('/{assignment_id}','api\AssignmentDetailController@getAnswerByAssignmentId');
+        Route::get('/user/{user_id}','api\AssignmentDetailController@getAnswerByUser');
+        Route::post('/','api\AssignmentDetailController@register');
+        });
+
 });    
