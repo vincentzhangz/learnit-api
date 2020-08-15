@@ -97,9 +97,10 @@ class CourseController extends Controller
         return CourseDetail::all();
     }
 
-    public function getCourseDetailbyId(Request $request){
+    public function getCourseDetailbyCourseId(Request $request){
         return CourseDetail::where('course_id',$request->course_id)->first();
     }
+    
 
     public function getCourseById(Request $request){
         return Course::where('course_id','=',$request->course_id)->first();
