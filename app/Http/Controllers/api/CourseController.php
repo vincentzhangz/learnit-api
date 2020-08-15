@@ -31,7 +31,7 @@ class CourseController extends Controller
         $course->max_learning_dat = $maxLearning;
         $course->information = $information;
         if($course->save())
-            return json_encode("success");
+            return json_encode(array('course_id'=>$course->course_id));
         else
             return json_encode(array("error"=>"Error invalid data"));
     }
