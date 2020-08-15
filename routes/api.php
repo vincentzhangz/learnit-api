@@ -70,5 +70,4 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/{assignment_id}','api\AssignmentController@getAssingmentById');
         Route::post('/','api\AssignmentController@register');
         });
-    
 });    

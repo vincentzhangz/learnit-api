@@ -10,7 +10,7 @@ class ThreadController extends Controller
 
 
     public function getThreadByForumId(Request $request){
-        return Thread::where('forum_id',$request->forum_id)->first();
+        return Thread::where('forum_id',$request->forum_id)->get();
     }
 
     public function register(Request $request){
