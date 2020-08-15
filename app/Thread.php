@@ -8,14 +8,14 @@ class Thread extends Model
 {
     protected $table = 'thread';
     protected $primaryKey = 'thread_id';
-    protected $hidden = ['user'];
+    protected $hidden = ['user','comment'];
     protected  $casts = [
         'thread_id' => 'string',
         'forum_id' => 'string',
         'user_id' => 'string'
     ];
     protected $appends = [
-        'user-thread'
+        'user-thread','comment-thread'
     ];
 
     public function forum(){
@@ -24,7 +24,13 @@ class Thread extends Model
     public function getUserThreadAttribute(){
         return $this->user;
     }
+    public function getCommentThreadAttribute(){
+        return $this->comment;
+    }
     public function user(){
         return $this->belongsTo(User::class,'user_id');
+    }
+    public function comment(){
+        return $this->hasOne(Comment::class,'thread_id');
     }
 }

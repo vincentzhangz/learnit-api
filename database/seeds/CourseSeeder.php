@@ -26,6 +26,7 @@ class CourseSeeder extends Seeder
             $course->max_enroll_student = rand(10,20);
             $course->max_learning_day = rand(30,40);
             $course->information = "Testing";
+            $course->image = "https://i.stack.imgur.com/SFysv.jpg";
             $course->rating = rand(1,5);
             $course->created_at = $time->format('Y-m-d H:i:s');
             $course->save();

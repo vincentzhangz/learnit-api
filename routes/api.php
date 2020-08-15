@@ -62,5 +62,4 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/','api\CommentController@getAllComment');
         Route::get('/{thread_id}','api\CommentController@getAllCommentByThreadId');
         });
-
 });    

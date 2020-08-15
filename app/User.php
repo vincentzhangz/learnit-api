@@ -27,6 +27,6 @@ class User extends Authenticatable
             return $this->hasOne(Thread::class,'user_id');
       }
       public function comment(){
-            return $this->belongsTo(Comment::class,'user_id');
+            return $this->hasOne(Comment::class);
       }
 }

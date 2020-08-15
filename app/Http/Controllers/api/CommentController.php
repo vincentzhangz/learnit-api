@@ -32,4 +32,5 @@ class CommentController extends Controller
     public function getAllCommentByThreadId(Request $request){
         return Comment::where('thread_id',$request->thread_id)->first();
     }
+    
 }

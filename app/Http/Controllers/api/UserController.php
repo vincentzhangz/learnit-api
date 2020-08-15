@@ -37,9 +37,9 @@ class UserController extends Controller
                     )
                 );
             }else
-                return json_encode(array("error"=>"wrong password"));
+                return json_encode(array("error"=>"Invalid Credential"));
         }else
-            return json_encode(array("error"=>"wrong password"));
+            return json_encode(array("error"=>"Invalid Credential"));
     }
 
     public function register(Request $request){
