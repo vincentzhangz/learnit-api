@@ -13,9 +13,9 @@ class Course extends Model
      */
         protected $table = 'course';
         protected $primaryKey = 'course_id';
-        protected $hidden = array('category','created_at','updated_at','user','user_id','category_id');
+        protected $hidden = array('coursedetail','category','created_at','updated_at','user','user_id','category_id');
         protected $appends = [
-            'teacher','course_category'
+            'teacher','course_category','detail'
         ];
         protected $casts = [
             'course_id' => 'string',
@@ -30,13 +30,18 @@ class Course extends Model
             return $this->category;
         }
 
+        public function getDetailAttribute(){
+            return $this->coursedetail;
+        }
+
+        public function coursedetail(){
+            return $this->hasMany(CourseDetail::class,'course_id');
+        }
+
         public function user(){
             return $this->belongsTo(User::class,'user_id');
         }
         public function category(){
             return $this->belongsTo(Category::class,'category_id');
         }
-
-        
-    
 }
