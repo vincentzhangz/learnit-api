@@ -18,6 +18,7 @@ class CategorySeeder extends Seeder
             $db_category = new Category;
             $db_category->category_id = uniqid();
             $db_category->category_title = $category;
+            $db_category->category_image = '/assets/img/deluxe.jpg';
             $db_category->created_at = $time->format('Y-m-d H:i:s');
             $db_category->save();
         }
