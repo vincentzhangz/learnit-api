@@ -40,5 +40,6 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/getcourse/{course_id}','api\CourseController@getCourseById');
         Route::get('/getdetailcourse/{material_id}','api\CourseController@getCourseDetailbyId');
         Route::get('/getdetailcourse','api\CourseController@getCourseDetail');
+        Route::get('/getallcategory', 'api\CategoryController@getCategories');
     });
 });
