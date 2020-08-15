@@ -25,6 +25,7 @@ class CourseSeeder extends Seeder
             $course->course_title = $faker->randomElement(['Ipa','Ips',"Matematika","Penjasorkes","TIK"]);
             $course->max_enroll_student = rand(10,20);
             $course->max_learning_day = rand(30,40);
+            $course->information = "Testing";
             $course->created_at = $time->format('Y-m-d H:i:s');
             $course->save();
         }

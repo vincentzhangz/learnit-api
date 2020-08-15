@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
             'user_role'=>$faker->randomElement(['student','lecturer']),
             'user_password'=>password_hash($faker->password,PASSWORD_BCRYPT),
             'created_at'=>$time->format('Y-m-d H:i:s'),
+            'api_token'=>Str::random(60)
         ]);
 
         DB::table('user')->insert([
@@ -37,6 +38,7 @@ class UserSeeder extends Seeder
             'user_role'=>$faker->randomElement(['student','lecturer']),
             'user_password'=>password_hash('haku123',PASSWORD_BCRYPT),
             'created_at'=>$time->format('Y-m-d H:i:s'),
+            'api_token'=>Str::random(60)
         ]);
     }
 }
