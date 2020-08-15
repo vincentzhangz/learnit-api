@@ -23,8 +23,8 @@ class ForumSeeder extends Seeder
             $forum->forum_id = $forum_id;
             $forum->course_id = Course::all()->random(10)->first()->course_id;
             $forum->user_id = User::all()->random(10)->first()->user_id;
-            $forum->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
-            $forum->content = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem sint maiores veritatis consectetur voluptatum laudantium minus debitis accusantium eos dicta animi, alias sit tenetur eveniet repellat error magnam provident culpa.';
+            $forum->forum_title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $forum->forum_content = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem sint maiores veritatis consectetur voluptatum laudantium minus debitis accusantium eos dicta animi, alias sit tenetur eveniet repellat error magnam provident culpa.';
             $forum->save();
             for($j =0; $j<3; $j++){
                 $thread = new Thread;
@@ -32,7 +32,8 @@ class ForumSeeder extends Seeder
                 $thread->forum_id = $forum_id;
                 $thread->user_id = User::all()->random(10)->first()->user_id;
                 $thread->reply_content = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem sint maiores veritatis consectetur voluptatum laudantium minus debitis accusantium eos dicta animi, alias sit tenetur eveniet repellat error magnam provident culpa.';
-                $thread->iscorrect = $faker->randomElement(['true','netral','false']);
+                $thread->is_correct = $faker->randomElement(['true','netral','false']);
+                $thread->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
                 $thread->save();
             }
         }
