@@ -67,7 +67,4 @@ class CourseController extends Controller
     public function getCourseById(Request $request){
         return Course::where('course_id','=',$request->course_id)->first();
     }
-
-
-
 }

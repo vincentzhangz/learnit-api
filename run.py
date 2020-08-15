@@ -40,7 +40,7 @@ def restorlaravel():
     os.system("copy .env.example .env")
     os.system("php artisan key:generate")
     os.system("php artisan key:generate")
-    os.system("php artisan migrate:refresh --seed")
+    os.system("php artisan migrate:fresh --seed")
     print("success *(OwO)*")
     sleep(1)
     os.system("php artisan serve --port 8080")
