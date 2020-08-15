@@ -11,6 +11,19 @@ use Illuminate\Http\Request;
 
 class CourseEnrollController extends Controller
 {
+
+    public function register(Request $request){
+        if(!$request->course_id || !$request->user_id)
+            return json_encode(array("error"=>'invalid format form'));
+        $enroll = new CourseEnroll;
+        $enroll->user_id = $request->user_id;
+        $enroll->course_id = $request->course_id;
+        if($enroll->save())
+            return json_encode("sucess");
+        else
+            return json_encode(array("error"=>"failed to save"));
+    }
+
     public function getCourse(Request $request){
         $user = User::where('user_id',$request->user_id)->first();
         if(!$user)
