@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         $time = new DateTime(null,new DateTimeZone('Asia/Jakarta'));
-        $list_category = ['Mudah','Menengah','Mahir'];
+        $list_category = ['Beginer','Medium','Advance'];
         foreach($list_category as $category){
             $db_category = new Category;
             $db_category->category_id = uniqid();

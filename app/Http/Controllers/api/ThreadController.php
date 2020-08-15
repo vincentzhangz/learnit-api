@@ -13,6 +13,17 @@ class ThreadController extends Controller
         return Thread::where('forum_id',$request->forum_id)->get();
     }
 
+    public function updateIsCorrect(Request $request){
+        $data = $this->getAllThreadById($request);
+        $data->is_correct = $request->is_correct;
+        if($data->save()){
+            return json_encode(array("status"=>"update success",
+            "thread_id"=>$request->thread_id
+            ));
+        }
+        
+    }
+
     public function register(Request $request){
         $thread = new Thread;
         $thread_id = uniqid();

@@ -16,6 +16,29 @@ class CourseController extends Controller
         return Course::where('category_id',$request->category_id)->get();
     }
 
+    public function updateCourse(Request $request){
+        $course = $this->getCourseById($request);
+        $category = $request->category_id;
+        $title = $request->course_title;
+        $maxEnroll = $request->max_enroll_student;
+        $maxLearning = $request->max_learning_day;
+        $information = $request->information;
+        $image = $request->course_image;
+        if(!$image||!$category || !$title || !$maxEnroll || !$maxLearning || !$information)
+            return json_encode(array("error"=>"Error invalid data"));
+
+        $course->category_id = $category;
+        $course->course_title = $title;
+        $course->max_enroll_student = $maxEnroll;
+        $course->max_learning_day = $maxLearning;
+        $course->information = $information;
+        $course->course_image = $image;
+        if($course->save()){
+            return json_encode(array('status'=>'success','course_id'=>$request->course_id));
+        }
+        return json_encode(array("error"=>"invalid saved"));
+    }
+
     public function register(Request $request){
         $teacher = $request->user_id;
         $category = $request->category_id;
