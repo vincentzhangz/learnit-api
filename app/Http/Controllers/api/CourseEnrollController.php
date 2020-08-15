@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Course;
 use App\CourseEnroll;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -14,7 +15,13 @@ class CourseEnrollController extends Controller
         if(!$user)
             return json_encode(array('error'=>'Wrong user Id'));
         
-        $listCourse = CourseEnroll::where('user_id',$request->user_id)->get();
-        return $listCourse;
+        $enroll = CourseEnroll::where('user_id',$request->user_id)->get();
+        $listCourse = array();
+        foreach($enroll as $singleEnroll){
+            $single = Course::where('course_id',$singleEnroll->course_id)->get();
+            array_push($listCourse,$single);
+        }
+        $user->listCourse = $listCourse;
+        return $user;
     }
 }
