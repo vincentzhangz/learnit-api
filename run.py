@@ -39,10 +39,10 @@ def restorlaravel():
     os.system("copy .env.example .env")
     os.system("php artisan key:generate")
     os.system("php artisan key:generate")
-    os.system("php artisan migrate --seed")
+    os.system("php artisan migrate:refresh --seed")
     print("success *(OwO)*")
     sleep(1)
-    os.system("php artisan serve --port 80")
+    os.system("php artisan serve --port 8080")
 
 
 def main():
