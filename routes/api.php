@@ -27,8 +27,8 @@ Route::group(['middleware'=>['cors','myauth'],'prefix' => 'v1'], function(){
     Route::get('/category','api\ThreadController@getAllThread');
     Route::get('/comment','api\CommentController@getAllComment');
     Route::get('/course','api\CourseController@getCourse');
-    Route::get('/{course_id}','api\CourseController@getCourseById');
-    Route::get('/{forum_id}','api\ForumController@getForumById');
+    Route::get('course/{course_id}','api\CourseController@getCourseById');
+    Route::get('forum/{forum_id}','api\ForumController@getForumById');
 });
 
 Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], function(){
