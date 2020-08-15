@@ -10,7 +10,15 @@ class AssignmentDetailController extends Controller
 {
     public function register(Request $request){
         if(!$request->user_id||!$request->assignment_upload_file){
-            //
+            if(!$request->user_id||!$request->assignment_upload_file){
+                return json_encode(array("error"=>'invalid form data'));
+            }
+            $register_id = uniqid();
+            $detail = new AssignmentDetail;
+            $detail->assignment_id = $register_id;
+            $detail->user_id = $request->user_id;
+            $detail->user_id = $request->assignment_upload_file;
+            $detail->save();
         }
     }
 
