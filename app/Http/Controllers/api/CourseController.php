@@ -54,6 +54,10 @@ class CourseController extends Controller
         return Course::all();
     }
 
+    public function getCoursePopular(Request $request){
+        return Course::orderBy('rating','DESC')->limit(10)->get();
+    }
+
     public function getCourseDetail(){
         return CourseDetail::all();
     }

@@ -37,9 +37,9 @@ class UserController extends Controller
                     )
                 );
             }else
-                return json_encode(array("error"=>"Invalid Role"));
+                return json_encode(array("error"=>"wrong password"));
         }else
-            return json_encode(array("error"=>"Invalid Role"));
+            return json_encode(array("error"=>"wrong password"));
     }
 
     public function register(Request $request){
@@ -62,6 +62,7 @@ class UserController extends Controller
             return json_encode(array("error"=>"Invalid validation"));
         }
         
+
         try {
             if(DB::table('user')->insert([
                 'user_id'=>uniqid(),

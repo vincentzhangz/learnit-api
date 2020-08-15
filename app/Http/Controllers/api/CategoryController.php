@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Category;
 class CategoryController extends Controller
 {
-    // 
+
     public function getCategories(){
     	return Category::all();
     }

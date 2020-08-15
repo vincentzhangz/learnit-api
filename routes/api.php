@@ -27,7 +27,6 @@ Route::post('/login','api\UserController@login');
 Route::post('/register','api\UserController@register');
 });
 
-
 Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], function(){
     Route::get('/user', 'api\UserController@getCurrentUser');
     Route::get('/alluser','api\UserController@getUser');
@@ -36,10 +35,25 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'course'], function(){
         Route::post('/register','api\CourseController@register');
         Route::post('/registermaterial','api\CourseController@registerMaterial');
-        Route::get('/getcourse','api\CourseController@getCourse');      
+        Route::get('/getcourse','api\CourseController@getCourse');
+        Route::get('/getcourse/top/{ofset}','api\CourseController@getCoursePopular');      
         Route::get('/getcourse/{course_id}','api\CourseController@getCourseById');
         Route::get('/getdetailcourse/{material_id}','api\CourseController@getCourseDetailbyId');
         Route::get('/getdetailcourse','api\CourseController@getCourseDetail');
         Route::get('/getallcategory', 'api\CategoryController@getCategories');
+    });
+
+    Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
+        Route::post('/register','api\ForumController@register');
+        Route::get('/getforum','api\ForumController@getAllForum');
+        Route::get('/getforum/id/{forum_id}','api\ForumController@getForumById');
+        Route::get('/getforum/course/{course_id}','api\ForumController@getForumByCourse');
+
+    });
+    
+    Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'thread'], function(){
+        Route::post('/register','api\ThreadController@register');
+        Route::get('/getthread','api\ThreadController@getAllThread');
+        Route::get('/getthread/id/{thread_id}','api\ThreadController@getAllThreadById');
     });
 });

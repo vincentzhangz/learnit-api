@@ -25,4 +25,8 @@ class User extends Authenticatable
             return $this->hasMany(Course::class,'user_id');
       }
 
+      public function thread(){
+            return $this->belongsToMany(Thread::class,'user_id');
+      }
+
 }
