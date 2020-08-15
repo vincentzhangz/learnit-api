@@ -12,6 +12,7 @@ class ThreadController extends Controller
         $thread = new Thread;
         $thread->thread_id = uniqid();
         $thread->forum_id = $request->forum_id;
+        $thread->title = $request->title;
         $thread->user_id = $request->user_id;
         $thread->reply_content = $request->reply_content;
         $thread->is_correct = $request->is_correct;
