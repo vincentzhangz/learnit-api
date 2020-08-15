@@ -3,9 +3,14 @@
 this api for learnit :)
 
 ## Installation
+Before jump into the installation, make sure you are already download xampp, and composer
 
 Make sure you have python3 & turn on your mysql from xampp or another app.
 
+run in command line:
+    composer install
+
+then run the script
 ```bash
 python run.py
 ```
