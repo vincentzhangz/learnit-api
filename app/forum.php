@@ -14,7 +14,7 @@ class Forum extends Model
         'course_id' => 'string',
     ];
     protected $appends = [
-        'list-thread','user-forum'
+        'listthread','userforum'
     ];
 
     public function thread(){

@@ -9,7 +9,7 @@ class Comment extends Model
     protected $table = 'comment';
     protected $hidden = ['user'];
     protected $appends = [
-        'user-comment',
+        'usercomment',
     ];
     protected $casts = [
         'thread_id' => 'string',

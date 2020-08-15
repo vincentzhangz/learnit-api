@@ -15,7 +15,7 @@ class Thread extends Model
         'user_id' => 'string'
     ];
     protected $appends = [
-        'user-thread','comment-thread'
+        'userthread','commentthread'
     ];
 
     public function forum(){
