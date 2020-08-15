@@ -12,17 +12,18 @@ class ForumController extends Controller
         $user_id = $request->user_id;
         $course_id = $request->course_id;
         $forum_title = $request->forum_title;
+        $forum_id = uniqid();
         $forum_content = $request->forum_content;
         if(!$user_id || !$course_id || !$forum_title || !$forum_content)
             return json_encode(array('error'=>'missing form data'));
         $forum = new Forum;
-        $forum->forum_id = uniqid();
+        $forum->forum_id = $forum_id;
         $forum->forum_title = $forum_title;
         $forum->course_id = $course_id;
         $forum->user_id = $user_id;
         $forum->forum_content = $forum_content;
         if($forum->save())
-            return json_encode("success");
+            return json_encode(array("forum_id"=>$forum_id));
         else
             return json_encode(array('error'=>'invalid form data for insert'));
     }

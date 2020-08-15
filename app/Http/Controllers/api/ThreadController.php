@@ -15,7 +15,8 @@ class ThreadController extends Controller
 
     public function register(Request $request){
         $thread = new Thread;
-        $thread->thread_id = uniqid();
+        $thread_id = uniqid();
+        $thread->thread_id = $thread_id;
         $thread->forum_id = $request->forum_id;
         $thread->title = $request->title;
         $thread->user_id = $request->user_id;
@@ -24,7 +25,7 @@ class ThreadController extends Controller
         if($thread->is_correct === 'true' || $thread->is_correct === 'false' || $thread->is_correct === 'netral')
         {
             $thread->save();
-            return json_encode(array("success"));
+            return json_encode(array("thread_id"=>$thread_id));
         }else
             return json_encode(array('error'=>'error!'));
 
