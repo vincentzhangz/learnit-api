@@ -35,8 +35,8 @@ class CourseSeeder extends Seeder
             $courseDetail->course_id = $course->course_id;
             $courseDetail->course_title =  $faker->randomElement(['Learn Biologic','Who is Newton',"Learn Math","Introduce Programming","What is algorithm"]);
             $courseDetail->course_content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam laboriosam mollitia quos? Ab rerum necessitatibus deserunt deleniti quas itaque accusantium, modi consequatur dolore recusandae qui dolor sequi voluptate optio! Earum!";
-            $courseDetail->save();
             $course->save();
+            $courseDetail->save();
         }
     }
 }

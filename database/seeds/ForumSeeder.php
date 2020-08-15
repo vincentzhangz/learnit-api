@@ -22,6 +22,7 @@ class ForumSeeder extends Seeder
             $forum->course_id = Course::all()->random(10)->first()->course_id;
             $forum->user_id = User::all()->random(10)->first()->user_id;
             $forum->title = $faker->sentence($nbWords = 6, $variableNbWords = true);
+            $forum->content = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem sint maiores veritatis consectetur voluptatum laudantium minus debitis accusantium eos dicta animi, alias sit tenetur eveniet repellat error magnam provident culpa.';
         }
     }
 }
