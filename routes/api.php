@@ -33,6 +33,16 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
     Route::get('/user/{email}','api\UserController@getUserByEmail');
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'course'], function(){
+
+        Route::post('/register','api\CourseController@register');
+        Route::post('/registermaterial','api\CourseController@registerMaterial');
+        Route::get('/getcourse','api\CourseController@getCourse');
+        Route::get('/getcourse/top/{ofset}','api\CourseController@getCoursePopular');      
+        Route::get('/getcourse/{course_id}','api\CourseController@getCourseById');
+        Route::get('/getdetailcourse/{material_id}','api\CourseController@getCourseDetailbyId');
+        Route::get('/getdetailcourse','api\CourseController@getCourseDetail');
+        Route::get('/getallcategory', 'api\CategoryController@getCategories');
+
         Route::post('/','api\CourseController@register');
         Route::post('/material','api\CourseController@registerMaterial');
         Route::get('/','api\CourseController@getCourse');
@@ -40,6 +50,7 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/{course_id}','api\CourseController@getCourseById');
         Route::get('/detail/{material_id}','api\CourseController@getCourseDetailbyId');
         Route::get('/detail','api\CourseController@getCourseDetail');
+
     });
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
