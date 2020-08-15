@@ -29,4 +29,7 @@ class User extends Authenticatable
       public function comment(){
             return $this->hasOne(Comment::class);
       }
+      public function forum(){
+            return $this->hasOne(Forum::class,'user_id');
+      }
 }

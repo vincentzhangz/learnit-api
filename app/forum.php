@@ -14,11 +14,19 @@ class Forum extends Model
         'course_id' => 'string',
     ];
     protected $appends = [
-        'list-thread'
+        'list-thread','user-forum'
     ];
 
     public function thread(){
         return $this->hasMany(Thread::class,'forum_id');
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function getUserForumAttribute(){
+        return $this->user;
     }
 
     public function getListThreadAttribute(){

@@ -4,7 +4,7 @@ import os
 from time import sleep
 
 def install():
-    os.system('composer install')
+    # os.system('composer install')
     os.system('composer global require laravel/installer')
     subprocess.check_call([sys.executable, "-m", "pip", "install", "mysql-connector-python"])
 
