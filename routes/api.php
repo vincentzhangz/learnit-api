@@ -1,5 +1,6 @@
 <?php
 
+use App\Forum;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -41,25 +42,18 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/detail/{material_id}','api\CourseController@getCourseDetailbyId');
         Route::get('/detail','api\CourseController@getCourseDetail');
         Route::get('/category', 'api\CategoryController@getCategories');
-
-
-        Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
+    });
+    
+    Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
         Route::post('/','api\ForumController@register');
         Route::get('/','api\ForumController@getAllForum');
         Route::get('/{forum_id}','api\ForumController@getForumById');
         Route::get('/course/{course_id}','api\ForumController@getForumByCourse');
-    });
+        });
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'thread'], function(){
         Route::post('/','api\ThreadController@register');
         Route::get('/','api\ThreadController@getAllThread');
         Route::get('/{thread_id}','api\ThreadController@getAllThreadById');
-    });
-
-    
-});
-    
-    
-        
-    
-    
+        });
+    });    
