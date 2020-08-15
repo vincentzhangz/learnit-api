@@ -17,6 +17,7 @@ class CreateThreadTable extends Migration
             $table->string('thread_id')->primary();
             $table->string('forum_id');
             $table->string('user_id');
+            $table->string('title');
             $table->foreign('forum_id')->references('forum_id')->on('forum');
             $table->foreign('user_id')->references('user_id')->on('user');
             $table->text('reply_content');
