@@ -15,5 +15,14 @@ class User extends Authenticatable
       protected $table = 'user';
       protected $fillable = array('user_name', 'user_image');
       protected $guarded = array('user_id', 'user_email');
-      protected $hidden = array('user_password','user_id','created_at','updated_at','api_token');
-   }
+      protected $casts = [
+            'user_id' => 'string',
+      ];
+      protected $hidden = array('user_password','created_at','updated_at','api_token');
+      protected $primaryKey = 'user_id';
+
+      public function course(){
+            return $this->hasMany(Course::class,'user_id');
+      }
+
+}

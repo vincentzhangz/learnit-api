@@ -16,16 +16,25 @@ class UserController extends Controller
         return User::all();
     }
 
+    public function getCurrentUser(){
+        return Auth::user();
+    }
+
     public  function getUserByEmail(Request $request){
         $email = $request->email;
         return User::where('user_email', '=', $email)->first();
     }
 
     public function login(Request $request){
-        $result = User::where('user_email', '=', $request->email)->first();;
+        $result = User::where('user_email', '=', $request->email)->first();
         if($result !== null){
             if(password_verify($request->password,$result->user_password)){
-                return $result;
+                
+                return json_encode(
+                    array('user_id' => $result->user_id,
+                    'token' => $result->api_token
+                    )
+                );
             }else
                 return 'wrong cridential';
         }else
