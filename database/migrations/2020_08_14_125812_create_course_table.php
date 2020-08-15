@@ -21,7 +21,7 @@ class CreateCourseTable extends Migration
             $table->foreign('category_id')->references('category_id')->on('category');
             $table->string('course_title');
             $table->integer('rating');
-            $table->string('information');
+            $table->text('information');
             $table->integer('max_enroll_student');
             $table->integer('max_learning_day');
             $table->timestamps();
