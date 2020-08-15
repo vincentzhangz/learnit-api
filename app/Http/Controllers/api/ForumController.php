@@ -19,6 +19,7 @@ class ForumController extends Controller
         $forum->forum_id = uniqid();
         $forum->forum_title = $forum_title;
         $forum->course_id = $course_id;
+        $forum->user_id = $user_id;
         $forum->forum_content = $forum_content;
         if($forum->save())
             return json_encode("success");
