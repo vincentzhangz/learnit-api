@@ -18,7 +18,9 @@ class CourseController extends Controller
         $maxEnroll = $request->max_enroll_student;
         $maxLearning = $request->max_learning_day;
         if(!$teacher || !$category || !$title || !$maxEnroll || !$maxLearning)
-            return json_encode("Error invalid data");
+            return json_encode(array("error"=>"Error invalid data"));
+        else if(User::where(['user_id', '=', $teacher])->first()->user_role == 'student')
+            return json_encode(array("error"=>"Invalid Role"));
         $course = new Course;
         $course->course_id = uniqid();
         $course->category_id = $category;
@@ -29,14 +31,14 @@ class CourseController extends Controller
         if($course->save())
             return json_encode("success");
         else
-            return json_encode("failed");
+            return json_encode(array("error"=>"Error invalid data"));
     }
 
     public function registerMaterial(Request $request){
         if(!$request->course_id
         || !$request->course_title
         || !$request->course_content)
-            return json_encode("invalid data");
+            return json_encode(array("error"=>"Error invalid data"));
         $detailCourse = new CourseDetail;
         $detailCourse->material_id = uniqid();
         $detailCourse->course_id = $request->course_id;
@@ -45,7 +47,7 @@ class CourseController extends Controller
         if($detailCourse->save())
             return json_encode("success");
         else
-            return json_encode("error");
+            return json_encode(array("error"=>"Error invalid data"));
     }
 
     public function getCourse(){

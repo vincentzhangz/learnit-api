@@ -37,9 +37,9 @@ class UserController extends Controller
                     )
                 );
             }else
-                return json_encode('wrong cridential');
+                return json_encode(array("error"=>"Invalid Role"));
         }else
-            return json_encode('wrong cridential');
+            return json_encode(array("error"=>"Invalid Role"));
     }
 
     public function register(Request $request){
@@ -59,7 +59,7 @@ class UserController extends Controller
         ]);
 
         if($validate->fails()){
-            return $validate->errors();
+            return json_encode(array("error"=>"Invalid validation"));
         }
 
         if(DB::table('user')->insert([
@@ -74,6 +74,6 @@ class UserController extends Controller
             'api_token'=>Str::random(60)
         ]))
         return json_encode('success');
-        return json_encode('error-server');
+        return json_encode(array("error"=>"error insert user"));
     }
 }
