@@ -21,12 +21,17 @@ use Illuminate\Support\Facades\Route;
 
 
 //untuk dari front end ke server
+
+Route::group(['middleware'=>['cors','myauth'],'prefix' => 'v1'], function(){
+Route::post('/login','api\UserController@login');
+Route::post('/register','api\UserController@register');
+});
+
+
 Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], function(){
     Route::get('/user', 'api\UserController@getCurrentUser');
-    Route::post('/login','api\UserController@login');
     Route::get('/alluser','api\UserController@getUser');
     Route::get('/user/{email}','api\UserController@getUserByEmail');
-    Route::post('/register','api\UserController@register');
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'course'], function(){
         Route::get('/register','api\CourseController@register');
