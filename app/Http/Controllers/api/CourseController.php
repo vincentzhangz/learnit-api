@@ -55,7 +55,7 @@ class CourseController extends Controller
     }
 
     public function getCoursePopular(Request $request){
-        return Course::orderBy('rating','DESC')->limit(10)->get();
+        return Course::orderBy('rating','DESC')->limit($request->offset)->get();
     }
 
     public function getCourseDetail(){

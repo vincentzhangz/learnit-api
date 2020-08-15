@@ -33,26 +33,26 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
     Route::get('/user/{email}','api\UserController@getUserByEmail');
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'course'], function(){
-        Route::post('/register','api\CourseController@register');
-        Route::post('/registermaterial','api\CourseController@registerMaterial');
-        Route::get('/getcourse','api\CourseController@getCourse');
-        Route::get('/getcourse/top/{ofset}','api\CourseController@getCoursePopular');      
-        Route::get('/getcourse/{course_id}','api\CourseController@getCourseById');
-        Route::get('/getdetailcourse/{material_id}','api\CourseController@getCourseDetailbyId');
-        Route::get('/getdetailcourse','api\CourseController@getCourseDetail');
+        Route::post('/','api\CourseController@register');
+        Route::post('/material','api\CourseController@registerMaterial');
+        Route::get('/','api\CourseController@getCourse');
+        Route::get('/top/{offset}','api\CourseController@getCoursePopular');      
+        Route::get('/{course_id}','api\CourseController@getCourseById');
+        Route::get('/detail/{material_id}','api\CourseController@getCourseDetailbyId');
+        Route::get('/detail','api\CourseController@getCourseDetail');
     });
 
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'forum'], function(){
-        Route::post('/register','api\ForumController@register');
-        Route::get('/getforum','api\ForumController@getAllForum');
-        Route::get('/getforum/id/{forum_id}','api\ForumController@getForumById');
-        Route::get('/getforum/course/{course_id}','api\ForumController@getForumByCourse');
+        Route::post('/','api\ForumController@register');
+        Route::get('/','api\ForumController@getAllForum');
+        Route::get('/{forum_id}','api\ForumController@getForumById');
+        Route::get('/course/{course_id}','api\ForumController@getForumByCourse');
 
     });
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'thread'], function(){
-        Route::post('/register','api\ThreadController@register');
-        Route::get('/getthread','api\ThreadController@getAllThread');
-        Route::get('/getthread/id/{thread_id}','api\ThreadController@getAllThreadById');
+        Route::post('/','api\ThreadController@register');
+        Route::get('/','api\ThreadController@getAllThread');
+        Route::get('/{thread_id}','api\ThreadController@getAllThreadById');
     });
 });
