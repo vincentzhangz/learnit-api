@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use App\Helpers;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -36,9 +37,9 @@ class UserController extends Controller
                     )
                 );
             }else
-                return 'wrong cridential';
+                return json_encode('wrong cridential');
         }else
-            return 'wrong cridential';
+            return json_encode('wrong cridential');
     }
 
     public function register(Request $request){
@@ -69,9 +70,10 @@ class UserController extends Controller
             'user_image'=>null,
             'user_role'=>$role,
             'user_password'=>password_hash($password,PASSWORD_BCRYPT),
-            'created_at'=>Helpers::getCurrentDate()
+            'created_at'=>Helpers::getCurrentDate(),
+            'api_token'=>Str::random(60)
         ]))
-        return 'success';
-        return 'error-server';
+        return json_encode('success');
+        return json_encode('error-server');
     }
 }
