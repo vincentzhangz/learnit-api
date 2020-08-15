@@ -25,6 +25,8 @@ class Thread extends Model
         return $this->user;
     }
     public function getCommentThreadAttribute(){
+        if(!$this->comment)
+            return array();
         return $this->comment;
     }
     public function user(){
