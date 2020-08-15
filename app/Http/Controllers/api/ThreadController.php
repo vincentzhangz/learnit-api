@@ -27,7 +27,8 @@ class ThreadController extends Controller
     public function getAllThread(){
         return Thread::all();
     }
+    
     public function getAllThreadById(Request $request){
-        return Thread::where('thread_id',$request->thread_id)->first();
+        return Thread::where('thread_id',$request->thread_id)->first()->user;
     }
 }

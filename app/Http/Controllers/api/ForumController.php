@@ -37,4 +37,6 @@ class ForumController extends Controller
     public function getForumByCourse(Request $request){
         return Forum::where('course_id',$request->course_id)->first();
     }
+
+    
 }

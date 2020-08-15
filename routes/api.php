@@ -47,7 +47,6 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/','api\ForumController@getAllForum');
         Route::get('/{forum_id}','api\ForumController@getForumById');
         Route::get('/course/{course_id}','api\ForumController@getForumByCourse');
-
     });
     
     Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'thread'], function(){
@@ -55,4 +54,6 @@ Route::group(['middleware'=>['cors','myauth','auth:api'],'prefix' => 'v1'], func
         Route::get('/','api\ThreadController@getAllThread');
         Route::get('/{thread_id}','api\ThreadController@getAllThreadById');
     });
+
+    
 });

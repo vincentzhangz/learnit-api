@@ -20,13 +20,10 @@ class User extends Authenticatable
       ];
       protected $hidden = array('user_password','created_at','updated_at','api_token');
       protected $primaryKey = 'user_id';
-
       public function course(){
             return $this->hasMany(Course::class,'user_id');
       }
-
       public function thread(){
-            return $this->belongsToMany(Thread::class,'user_id');
+            return $this->hasOne(Thread::class,'user_id');
       }
-
 }
