@@ -16,13 +16,20 @@ class CourseEnrollController extends Controller
     public function register(Request $request){
         if(!$request->course_id || !$request->user_id)
             return json_encode(array("error"=>'invalid format form'));
-        $enroll = new CourseEnroll;
+
+        try {
+            $enroll = new CourseEnroll;
         $enroll->user_id = $request->user_id;
         $enroll->course_id = $request->course_id;
+        
         if($enroll->save())
             return json_encode("sucess");
         else
             return json_encode(array("error"=>"failed to save"));
+        } catch (\Throwable $th) {
+            return json_encode(array("error"=>"failed to save"));
+        }
+        
     }
 
     public function getCourse(Request $request){
